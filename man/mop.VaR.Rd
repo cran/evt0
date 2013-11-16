@@ -1,17 +1,13 @@
-\name{mop}
-\alias{mop}
-\alias{mop.MOP}
-\alias{mop.RBMOP}
-\alias{mop.beta}
-\alias{mop.rho}
+\name{mop.VaR}
+\alias{mop.VaR}
 \title{
-Mean of order p (MOP) statistics for the extreme value index (EVI)
+Value at Risk (VaR) using mean of order p (MOP) 
 }
 \description{
-Mean of order p (MOP) statistics for the extreme value index (EVI).
+This function computes VaR using MOP method.
 }
 \usage{
-mop(X, k = 1, p = 0, method = c("MOP", "RBMOP"))
+mop.VaR(X, k = 1, p = 0, q, method = c("MOP", "RBMOP"))
 }
 
 \arguments{
@@ -24,23 +20,26 @@ intermediate sequence, default is \code{k=1}.
   \item{p}{
 mean order, default is \code{p=0}.
 }
+  \item{q}{quantile.
+}
   \item{method}{
 Method used, ("MOP", default) 
                   and reduced-bias MOP ("RBMOP").
 }
 }
 \details{
-This method performs a mean of order p (is real) (MOP) methodology for estimating extreme value index (EVI) for heavy tailed models. At \code{p=0} MOP estimator is equal to classical Hill estimator.
+This function computes VaR using MOP method.
 }
-
-
+\value{
+a numeric value
+}
 \references{
 M.F. Brilhante, M.Ivette Gomes and Dinis Pestana. (2013). A simple generalisation of the Hill estimator
 \emph{Computational Statistics and Data Analysis}, \bold{57}, 518-- 535.
 
-J.Beran, D. Schell and M. Stehlik. (2013). The harmonic moment tail index estimator: asymptotic distribution and robustness  \emph{Ann Inst Stat Math},  Published Online.
-
 M. Ivette Gomes, M.F. Brilhante and Dinis Pestana. (2013). New reduced-bias estimators of a positive extreme value index \emph{Submitted article}.
+
+M. Ivette Gomes, M.F. Brilhante and Dinis Pestana. (2013). A Mean-of-order-p Class of Value-at-Risk Estimates \emph{Submitted article}.
 }
 \author{
 B G Manjunath \email{bgmanjunath@gmail.com}
@@ -52,9 +51,9 @@ set.seed(1.2345)
 # generate random samples               
 X = rfrechet(5000, loc = 0, scale = 1,shape = 1/0.5)
 
-# estimate EVI 
-mop(X,100, 0,"MOP")
+# estimate VaR 
+mop.VaR(X,500,0,0.5,"MOP")
 }
 
 \keyword{mean of order p}
-\keyword{Hill estimator}
+\keyword{VaR}

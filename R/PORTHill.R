@@ -1,4 +1,4 @@
-PORTHill = function (X,k =1,q =0.1) 
+PORT.Hill = function (X,k=1,q=0.1,method=c("MOP", "RBMOP")) 
   
 { 
     
@@ -21,21 +21,69 @@ PORTHill = function (X,k =1,q =0.1)
     stop("some of the data points are not real.")
   }
   
-    
+  
   if ( q < 0 || q > 1 || !is.numeric(q)) 
   {
     stop("q must lie between 0 and 1.")
   }
   
+  
+  method = match.arg(method)
+  
+  
+  if (method == "MOP") 
+  {
+    PORT.EVI = PORT.MOP(X,k,q)
+  }
+  
+  else if (method == "RBMOP")
+  {
+    PORT.EVI = PORT.RBMOP(X,k,q)
+  }  
+  
+  
+  return(PORT.EVI)  
+  
+   
+}
+
+# PORT Hill estimator
+
+PORT.MOP = function(X,k,q)
+{
+  
+  n = length(X)
   osx = sort(X) 
-        
+  nq = floor(n*q) + 1
+  
   sum = 0 
   
   for (j in 1:k) 
   { 
     sum = sum + ( log(osx[n-j+1] - osx[nq] ) - log(osx[n-k] - osx[nq]) )  
-     return(sum/k) 
+    return(sum/k) 
   }
-  
-  
+    
 }
+
+
+# quasi-PORT Hill estimator
+
+PORT.RBMOP = function(X,k,q)
+{ 
+  n = length(X)
+  osx = sort(X) 
+  
+  nq = floor(n*q) + 1
+  
+  H =  PORT.MOP(X,k,q)
+  
+  S =  mop(X,k,p=0,"RBMOP")
+  
+  Sest  = as.integer(S)
+  
+  
+  estimate = H* (1 -   ( Sest[3] / (1-Sest[2])  )* (n/k)^(Sest[2])    )
+  
+  return(list(PORTEVI =estimate, rho =Sest[2],beta =Sest[3]))
+}  
