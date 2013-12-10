@@ -1,0 +1,64 @@
+\name{other.q}
+\alias{other.q}
+\title{
+Other methods for high quantile estimate
+}
+\description{
+This function computes high quantile or value-at-risk (VaR) estimate based on moment (MO), generalized Hill (GH) and mixed moment (MM) extreme value index (EVI) estimates.
+}
+\usage{
+other.q(x, k, q, method = c("MO", "GH", "MM"))
+}
+
+\arguments{
+  \item{x}{
+Data vector.
+}
+  \item{k}{
+a vector of number of upper order statistics.
+}
+  \item{q}{
+quantile level.
+}
+  \item{method}{
+Method used, moment estimate("MO", default), generalized Hill ("GH") and mixed moment ("MM").
+}
+}
+\details{
+The computation of estimate of high quantile or VaR is based on moment, generalized Hill and mixed moment  EVI estimators  and the computation of EVI estimators are related to the work by Dekkers et al. (1989), Beirlant et al. (1996) and Fraga Alves et al. (2009).
+}
+\value{
+a \code{k} dimensional vector of EVI and high quantile estimates.
+}
+\references{
+Dekkers, A., Einmahl, J. and L. de Haan. (1989). A moment estimator for the index of an extreme-value distribution. 
+\emph{Ann. Statist.}, \bold{17}, 1833-- 1855.
+
+Beirlant, J.,  Vynckier, P. and Teugels, J. (1996). Excess functions and estimation of the extreme-value index. 
+\emph{Bernoulli}, \bold{2}, 293--318.
+
+Fraga Alves, M.I.,  Gomes, M.I., de Haan, L. and Neves, C. (2009). The mixed moment estimator and location invariant alternatives. 
+\emph{Extremes}, \bold{12}, 149--185.
+
+Weissman, I. (1978). Estimation of parameters and large quantiles based on the k largest observations. \emph{J. Amer. Statist. Assoc.}, \bold{73}, 812-- 815.
+}
+\author{
+B G Manjunath \email{bgmanjunath@gmail.com}
+}
+
+\seealso{
+\code{\link[evt0]{other.EVI}}
+}
+
+\examples{
+# generate random samples               
+x = rfrechet(50000, loc = 0, scale = 1,shape = 1/0.5)
+
+# estimate EVI and high quantile at level q
+other.q(x,c(500,5000,40000),0.5,"MO")
+}
+
+\keyword{moment}
+\keyword{generalized Hill}
+\keyword{mixed moment}
+\keyword{VaR}

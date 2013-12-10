@@ -1,6 +1,6 @@
-mop.AREFF = function (x, k, p)   
+mop.q = function (x, k, p, q, method=c("MOP", "RBMOP")) 
 { 
-  
+    
   n = length(x) 
   
   # Checking for plausible inputes
@@ -35,40 +35,41 @@ mop.AREFF = function (x, k, p)
     stop("p must be a real.")
   }
   
-   
+    
+  if ( q < 0 || q > 1 || !is.numeric(q)) 
+  {
+    stop("q must lie between 0 and 1.")
+  }
   
-  EVI.est = mop(x,k,p,"MOP")
+  method = match.arg(method)
+  
+  
+  
+  EVI.est = mop(x,k,p,method)
   EVI.est = EVI.est$EVI
   
-  RBEVI   = mop(x,k,p,"RBMOP")
-    
-  rhoest = RBEVI$rho
-
- if(any(p*EVI.est>0.5))
- {
-    stop("Condition on EVI and p  is not satified.")
- }
- 
-  dk = length(k)
-  dp = length(p)
   
-  c1 = numeric(dk)
-  c2 = numeric(dk)
+  osx = sort(x) 
+   dk = length(k)
+   dp = length(p)
   
-  AREFF = matrix(NA,dk,dp)
+ mopVaR = matrix(NA,dk,dp)
   
-  for(j in 1:dp)
-  {  
-         c1 = ( sqrt(1-2*p[j]*EVI.est[,j])/(1-p[j]*EVI.est[,j])) ^(-2*rhoest)   
-         c2 = abs( (1-p[j]*EVI.est[,j]-rhoest)/((1-rhoest)*(1-p[j]*rhoest)) )
-   AREFF[,j]= (c1*c2)^(1/(1-2*rhoest))
-  }  
+    for(j in 1:dp)
+    { 
+      mopVaR[,j] = (osx[n-k]) *  (k/(n*q))^EVI.est[,j]
+    }
   
-
-
-  colnames(AREFF) = p
-  rownames(AREFF) = k
-    
-  return(list(AREFF=AREFF))  
   
+  colnames(mopVaR) = p
+  rownames(mopVaR) = k
+  
+  
+  return(list(EVI=EVI.est,HQ=mopVaR)) 
+   
 }
+
+
+
+
+  

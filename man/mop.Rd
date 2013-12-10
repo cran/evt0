@@ -1,3 +1,4 @@
+\encoding{latin1} 
 \name{mop}
 \alias{mop}
 \alias{mop.MOP}
@@ -5,24 +6,24 @@
 \alias{mop.beta}
 \alias{mop.rho}
 \title{
-Mean of order p (MOP) statistics for the extreme value index (EVI)
+Mean of order p statistic for the extreme value index 
 }
 \description{
-Mean of order p (MOP) statistics for the extreme value index (EVI).
+This function compute mean of order p (MOP) basic statistic for the extreme value index (EVI), which is indeed a simple generalisation of the Hill estimator.
 }
 \usage{
-mop(X, k = 1, p = 0, method = c("MOP", "RBMOP"))
+mop(x, k, p, method = c("MOP", "RBMOP"))
 }
 
 \arguments{
-  \item{X}{
+  \item{x}{
 Data vector.
 }
   \item{k}{
-intermediate sequence, default is \code{k=1}.
+a vector of number of upper order statistics.
 }
   \item{p}{
-mean order, default is \code{p=0}.
+a vector of mean order.
 }
   \item{method}{
 Method used, ("MOP", default) 
@@ -30,31 +31,44 @@ Method used, ("MOP", default)
 }
 }
 \details{
-This method performs a mean of order p (is real) (MOP) methodology for estimating extreme value index (EVI) for heavy tailed models. At \code{p=0} MOP estimator is equal to classical Hill estimator.
-}
+Basic statistics for the EVI estimation, the MOP of \eqn{U_{ik}}, where 
+\eqn{U_{ik}= \frac{X_{n-i+1:n}}{X_{n-k:n}} } and \eqn{X_{i:n}} are order statistics, is
+\deqn{A(k)= ( \frac{1}{k} \sum^k_{i=1} U^p_{ik} )^{1/p},}  for \eqn{p \neq 0.}
 
+The new class of MOP EVI- estimators is
+\deqn{H_p(k)= (1 - A^{-p}(k))/p,}   for \eqn{p \neq 0.}
+At \code{p=0} the above  MOP estimator is equal to classical Hill estimator.
+
+Reduced bias MOP EVI-estimators is\cr
+\deqn{RBA(k)=H_p(k) (1- \frac{\beta (1-p H_p(k) )}{1-\rho-p H_p(k)} (\frac{n}{k})^\rho ).}
+
+}
+\value{
+a matrix of EVI estimates, corresponds to \code{k} row and \code{p} columns. When \code{Method = "RBMOP"} shape and scale second order parameters estimates are also returned.
+}
 
 \references{
-M.F. Brilhante, M.Ivette Gomes and Dinis Pestana. (2013). A simple generalisation of the Hill estimator
+Brilhante, M.F., Gomes, M.I. and Pestana, D. (2013). A simple generalisation of the Hill estimator.
 \emph{Computational Statistics and Data Analysis}, \bold{57}, 518-- 535.
 
-J.Beran, D. Schell and M. Stehlik. (2013). The harmonic moment tail index estimator: asymptotic distribution and robustness  \emph{Ann Inst Stat Math},  Published Online.
+Beran, J., Schell, D. and Stehlik, M. (2013). The harmonic moment tail index estimator: asymptotic distribution and robustness.  \emph{Ann Inst Stat Math},  Published Online.
 
-M. Ivette Gomes, M.F. Brilhante and Dinis Pestana. (2013). New reduced-bias estimators of a positive extreme value index \emph{Submitted article}.
+Gomes, M.I., Brilhante, M.F. and Pestana, D. (2013). New reduced-bias estimators of a positive extreme value index. \emph{Submitted article}.
 }
+
 \author{
-B G Manjunath \email{bgmanjunath@gmail.com}
+B G Manjunath \email{bgmanjunath@gmail.com}, Frederico Caeiro \email{fac@fct.unl.pt}
 }
 
 \examples{
-set.seed(1.2345) 
-
 # generate random samples               
-X = rfrechet(5000, loc = 0, scale = 1,shape = 1/0.5)
+x = rfrechet(50000, loc = 0, scale = 1,shape = 1/0.5)
 
 # estimate EVI 
-mop(X,100, 0,"MOP")
+mop(x,c(1,500,5000,49999), c(-1,0,1),"RBMOP")
 }
 
-\keyword{mean of order p}
-\keyword{Hill estimator}
+\keyword{MOP}
+\keyword{EVI}
+\keyword{reduced-bias}
+\keyword{Hill}

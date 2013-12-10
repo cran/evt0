@@ -1,0 +1,17 @@
+citHeader("To cite package evt0 in publications use:")
+## R >= 2.8.0 passes package metadata to citation().
+if(!exists("meta") || is.null(meta)) meta <- packageDescription("evt0")
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+citEntry( entry = "Manual",
+          title = "{evt0}: Mean of order p, peaks over random threshold Hill and high quantile estimates",
+         author = personList(as.person("B G Manjunath"), 
+                             as.person("Frederico Caeiro")),
+           year = year,
+           note = note,
+           url  = "http://cran.r-project.org/web/packages/evt0/index.html",
+           textVersion = paste("B G Manjunath, Frederico Caeiro (",
+                               year,
+                               ").{evt0}:Mean of order p, peaks over random threshold Hill and high quantile estimates",
+                               note, ".", sep="")
+)
