@@ -6,17 +6,17 @@ PORT.q = function (x, k, q1, q2, method=c("PMOP", "PRBMOP"))
    
   # Checking for plausible inputes
   
-  if (nq < 2 ) 
+  if (isTRUE(nq < 2)) 
   {
     stop("Insufficient data vector, check sample size and q.")
   }
     
-   if (is.null(k) || any(is.na(k)))
+   if (is.null(k) || isTRUE(any(is.na(k))))
    {
      stop("k is not specified")
    }
    
-   if (any(k < 1) || any(k > n-nq -1) || any(k == n-nq -1)  || !is.numeric(k)   || k != as.integer(k)  )
+   if (isTRUE(any(k < 1)) || isTRUE(any(k > n-nq -1)) || isTRUE(any(k == n-nq -1))  || !is.numeric(k)   || isTRUE(any(k != as.integer(k)))  )
    {
      stop("k must be greater than or equal to 1 and less than exceedance sample size.")
    }

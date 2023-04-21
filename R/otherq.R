@@ -14,7 +14,7 @@ other.q = function (x,k,q, method=c("MO", "GH","MM"))
     stop("k is not specified")
   }
   
-  if (any(k < 1) || any(k >n) || any(k == n) || !is.numeric(k) || k != as.integer(k))
+  if (any(k < 1) || any(k >n) || any(k == n) || !is.numeric(k) || isTRUE(any(k != as.integer(k))))
   {
     stop("Each k must be integer and greater than or equal to 1 and less than sample size.")
   }

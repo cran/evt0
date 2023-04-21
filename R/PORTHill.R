@@ -18,7 +18,7 @@ PORT.Hill = function (x, k, q, method=c("PMOP", "PRBMOP"))
     stop("k is not specified")
   }
   
-  if (any(k < 1) || any(k > n-nq -1) || any(k == n-nq -1)  || !is.numeric(k)   || k != as.integer(k)  )
+  if (isTRUE(any(k < 1)) || isTRUE(any(k > n-nq -1)) || isTRUE(any(k == n-nq -1))  || !is.numeric(k)   || isTRUE(any(k != as.integer(k)))  )
   {
     stop("k must be greater than or equal to 1 and less than exceedance sample size.")
   }

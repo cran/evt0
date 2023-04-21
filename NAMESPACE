@@ -1,2 +1,4 @@
 exportPattern("^[[:alpha:]]+")
+importFrom("stats", "median", "optim")
+import("evd")
 
