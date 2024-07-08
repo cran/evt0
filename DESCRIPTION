@@ -2,9 +2,8 @@ Package: evt0
 Type: Package
 Title: Mean of Order P, Peaks over Random Threshold Hill and High
         Quantile Estimates
-Version: 1.1-4
-Date: 2023-04-20
-Authors@R: c(person(given="Leo", family="Belzile", role = c("cre"), email = "belzilel@gmail.com", comment = c(ORCID = "0000-0002-9135-014X")), person(given="B. G.", family="Manjunath", role=c("aut"), comment = c(ORCID = "0000-0003-2687-0138")), person(given="Frederico", family="Caeiro", role=c("aut")), person(given="Maria Ivette.", family="Gomes", role=c("ctb"), comment = c(ORCID = "0000-0002-2903-6993")), person(given="Maria Isabel", family="Fraga Alves", role=c("ctb"), comment = c(ORCID = "0000-0003-3824-2403")))
+Version: 1.1.5
+Authors@R: c(person(given="Leo", family="Belzile", role = c("cre"), email = "belzilel@gmail.com", comment = c(ORCID = "0000-0002-9135-014X")), person(given="B. G.", family="Manjunath", role=c("aut"), comment = c(ORCID = "0000-0003-2687-0138")), person(given="Frederico", family="Caeiro", role=c("aut"), comment = c(ORCID = "0000-0001-8628-7281")), person(given="Maria Ivette.", family="Gomes", role=c("ctb"), comment = c(ORCID = "0000-0002-2903-6993")), person(given="Maria Isabel", family="Fraga Alves", role=c("ctb"), comment = c(ORCID = "0000-0003-3824-2403")))
 Depends: R (>= 1.9.0), evd, stats
 Description: The R package proposes extreme value index estimators for heavy tailed models 
              by mean of order p <DOI:10.1016/j.csda.2012.07.019>, peaks over random threshold
@@ -16,13 +15,13 @@ Description: The R package proposes extreme value index estimators for heavy tai
 License: GPL (>= 2)
 BugReports: https://github.com/lbelzile/evt0/issues/
 NeedsCompilation: no
-Packaged: 2023-04-21 00:38:36 UTC; lbelzile
+Packaged: 2024-07-08 19:52:03 UTC; lbelzile
 Author: Leo Belzile [cre] (<https://orcid.org/0000-0002-9135-014X>),
   B. G. Manjunath [aut] (<https://orcid.org/0000-0003-2687-0138>),
-  Frederico Caeiro [aut],
+  Frederico Caeiro [aut] (<https://orcid.org/0000-0001-8628-7281>),
   Maria Ivette. Gomes [ctb] (<https://orcid.org/0000-0002-2903-6993>),
   Maria Isabel Fraga Alves [ctb]
     (<https://orcid.org/0000-0003-3824-2403>)
 Maintainer: Leo Belzile <belzilel@gmail.com>
 Repository: CRAN
-Date/Publication: 2023-04-21 23:52:34 UTC
+Date/Publication: 2024-07-08 20:10:02 UTC
